@@ -12,3 +12,5 @@ Pode estar em várias propostas.
 
 ## Regras:
 Não autentica. Não aceita proposta.
+
+- O atributo contato = telefone principal(Whatsapp)
