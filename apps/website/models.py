@@ -1,5 +1,5 @@
 from django.db import models
-from djando.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 class Cliente(models.Model):
 
