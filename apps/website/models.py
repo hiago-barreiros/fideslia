@@ -58,3 +58,36 @@ class Proposta(models.Model):
         return f'{self.titulo} - {self.cliente.nome}'
 
 
+class Pagamentos(models.Model):
+    
+    STATUS_CHOICES = [
+        ('pendente', 'Pendente'),
+        ('confirmado', 'Confirmado'),
+        ('cancelado', 'Cancelado'),
+        ('estornado', 'Estornado')
+    ]
+
+    proposta = models.ForeignKey(
+        'Proposta',
+        on_delete=models.CASCADE,
+        related_name='pagamentos'
+    )
+
+    valor = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='pendente'
+    )
+
+    obsevacoes = models.TextField(blank=True)
+
+    criado_em = models.DateTimeField(auto_now_add=True)
+    confirmado_em = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f'Pagamento {self.id} - {self.valor}'
