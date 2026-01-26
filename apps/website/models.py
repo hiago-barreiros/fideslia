@@ -57,7 +57,6 @@ class Proposta(models.Model):
     def __str__(self):
         return f'{self.titulo} - {self.cliente.nome}'
 
-
 class Pagamentos(models.Model):
     
     STATUS_CHOICES = [
