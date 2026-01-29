@@ -5,7 +5,7 @@ Interpreta a situação financeira da proposta.
 '''
 
 from decimal import Decimal
-from apps.website.models import Proposta, Pagamentos
+from apps.website.models import Proposta, Pagamento
 
 class StatusFinanceiroDeServico:
     '''
@@ -25,7 +25,7 @@ class StatusFinanceiroDeServico:
 
         proposta = Proposta.objects.get(id=proposta_id)
 
-        pagamentos_confirmados = Pagamentos.objects.filter(
+        pagamentos_confirmados = Pagamento.objects.filter(
             proposta=proposta,
             status='confirmado'
         )

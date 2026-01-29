@@ -12,7 +12,7 @@ class ConfirmarPagamentoDeServico:
     '''
 
     @staticmethod
-    def executar(*, pagamento_id: int) -> Pagamentos:
+    def executar(*, pagamento_id: int) -> Pagamento:
         '''
         Confirma pagamento pendente.
 
@@ -23,7 +23,7 @@ class ConfirmarPagamentoDeServico:
         - Pagamento atualizado
         '''
 
-        pagamento = Pagamentos.objects.get(id=pagamento_id)
+        pagamento = Pagamento.objects.get(id=pagamento_id)
 
         # Regra de negócio
         if pagamento.status != 'pendente':

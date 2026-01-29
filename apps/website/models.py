@@ -57,7 +57,7 @@ class Proposta(models.Model):
     def __str__(self):
         return f'{self.titulo} - {self.cliente.nome}'
 
-class Pagamentos(models.Model):
+class Pagamento(models.Model):
     
     STATUS_CHOICES = [
         ('pendente', 'Pendente'),
@@ -83,7 +83,7 @@ class Pagamentos(models.Model):
         default='pendente'
     )
 
-    obsevacoes = models.TextField(blank=True)
+    observacoes = models.TextField(blank=True)
 
     criado_em = models.DateTimeField(auto_now_add=True)
     confirmado_em = models.DateTimeField(null=True, blank=True)

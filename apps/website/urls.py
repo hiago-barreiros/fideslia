@@ -1,9 +1,7 @@
 from django.urls import path
-from .views import index
-from apps.website.views.pagamento import (RegistrarPagamentoView, StatusFinanceiroView)
+from apps.website.views.pagamento import RegistrarPagamentoView, StatusFinanceiroView
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('proposta/<int:proposta_id>/pagamentos', RegistrarPagamentoView()),
-    path('proposta/<int:proposta_id>/financeiro/', StatusFinanceiroView())
+    path('proposta/<int:proposta_id>/pagamento/', RegistrarPagamentoView.as_view()),
+    path('proposta/<int:proposta_id>/financeiro/', StatusFinanceiroView.as_view())
 ]

@@ -3,7 +3,7 @@ from decimal import Decimal
 
 
 from django.contrib.auth.models import User
-from apps.website.models import Cliente, Proposta, Pagamentos
+from apps.website.models import Cliente, Proposta, Pagamento
 from apps.website.servicos.confirmar_pagamento import ConfirmarPagamentoDeServico
 
 class ConfirmarPagamentoServicoTest(TestCase):
@@ -34,7 +34,7 @@ class ConfirmarPagamentoServicoTest(TestCase):
             total=Decimal('100.00')
         )
 
-        self.pagamento = Pagamentos.objects.create(
+        self.pagamento = Pagamento.objects.create(
             Proposta=self.proposta,
             valor=Decimal('50.00'),
             status='pendente'
@@ -70,7 +70,7 @@ class ConfirmarPagamentoServicoTest(TestCase):
         Total pago igual ao total da proposta → quitada.
         """
 
-        Pagamentos.objects.create(
+        Pagamento.objects.create(
             proposta=self.proposta,
             valor=Decimal("100.00"),
             status="confirmado"

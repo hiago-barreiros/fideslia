@@ -4,14 +4,14 @@ Caso de Uso: Estornar Pagamento
 Remove o efeito financeiro de um pagamento confirmado.
 '''
 
-from apps.website.models import Pagamentos
+from apps.website.models import Pagamento
 
 '''
 Serviço responsável por estornar pagamentos.
 '''
 
 @staticmethod
-def executar(*, pagamento_id: int) -> Pagamentos:
+def executar(*, pagamento_id: int) -> Pagamento:
     '''
     Estorna um pagamento confirmado.
 
@@ -22,7 +22,7 @@ def executar(*, pagamento_id: int) -> Pagamentos:
     - Pagamento atualizado
     '''
 
-    pagamento = Pagamentos.objects.get(id=pagamento_id)
+    pagamento = Pagamento.objects.get(id=pagamento_id)
 
     # Regra de negócio
     if pagamento.status != 'confirmado':
