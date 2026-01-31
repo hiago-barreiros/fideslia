@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from apps.website.models import Cliente, Proposta, Pagamento
 from apps.website.servicos.confirmar_pagamento import ConfirmarPagamentoDeServico
 
-class ConfirmarPagamentoServicoTest(TestCase):
+class TestConfirmarPagamentoServico(TestCase):
     '''
     Testes do caso de uso: Confirmar Pagamento
     '''
@@ -76,7 +76,7 @@ class ConfirmarPagamentoServicoTest(TestCase):
             status="confirmado"
         )
 
-        resultado = StatusFinanceiroDeServico.executar(
+        resultado = TestConfirmarPagamentoServico.executar(
             proposta_id=self.proposta.id
         )
 

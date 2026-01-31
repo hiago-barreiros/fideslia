@@ -3,10 +3,10 @@ from decimal import Decimal
 
 from django.contrib.auth.models import User
 from apps.website.models import Cliente, Proposta, Pagamentos
-from apps.website.services.status_financeiro import StatusFinanceiroService
+from apps.website.services.status_financeiro import TestStatusFinanceiroService
 
 
-class StatusFinanceiroServiceTest(TestCase):
+class TestStatusFinanceiroService(TestCase):
     """
     Testes do cálculo financeiro da proposta.
     """
@@ -34,7 +34,7 @@ class StatusFinanceiroServiceTest(TestCase):
         Nenhum pagamento confirmado → proposta aberta.
         """
 
-        resultado = StatusFinanceiroService.executar(
+        resultado = TestStatusFinanceiroService.executar(
             proposta_id=self.proposta.id
         )
 
@@ -53,7 +53,7 @@ class StatusFinanceiroServiceTest(TestCase):
             status="confirmado"
         )
 
-        resultado = StatusFinanceiroService.executar(
+        resultado = TestStatusFinanceiroService.executar(
             proposta_id=self.proposta.id
         )
 
