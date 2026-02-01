@@ -55,3 +55,19 @@ Responsável por registrar um pagamento pendente associado a uma proposta.
 ### Saída
 - Entidade Pagamento criada
 
+## Caso de uso: Confirmar pagamento
+
+Responsável por confirmar um pagamento pendente.
+
+### Regras
+- Apenas pagamentos pendentes podem ser confirmados
+- Pagamentos confirmados não retornam ao estado anterior
+- A confirmação impacta o status financeiro da proposta
+
+### Entrada
+- ID do pagamento
+
+### Saída
+- Entidade Pagamento confirmada
+
+

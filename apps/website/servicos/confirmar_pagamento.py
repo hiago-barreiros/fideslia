@@ -4,7 +4,7 @@ Caso de Uso: Confirmar Pagamento
 Confirma um pagamento pendente
 '''
 
-from apps.website.models import Pagamentos
+from apps.website.models import Pagamento
 
 class ConfirmarPagamentoDeServico:
     '''
