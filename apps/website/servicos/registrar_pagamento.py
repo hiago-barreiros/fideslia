@@ -24,6 +24,7 @@ class RegistrarPagamentoDeServico:
         - Pagamento criado
         '''
 
+        # O pagamento não existe sem proposta.
         proposta = Proposta.objects.get(id=proposta_id)
 
         # Regra de negócio

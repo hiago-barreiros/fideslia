@@ -38,3 +38,20 @@ Esses estados representam o ciclo de vida financeiro de um pagamento.
 - Estados não podem ser revertidos após a confirmação da transição.
 - Um pagamento confirmado pode gerar impacto direto nos cálculos financeiros da proposta.
 - Um pagamento estornado implica a reavaliação dos valores financeiros, sem exclusão do registro.
+
+## Caso de uso: Registrar pagamento
+
+Responsável por registrar um pagamento pendente associado a uma proposta.
+
+### Entradas
+- ID da proposta
+- Valor do pagamento
+
+### Regras
+- Pagamento inicia como PENDENTE
+- Não altera saldo diretamente
+- Não confirma pagamento automaticamente
+
+### Saída
+- Entidade Pagamento criada
+
