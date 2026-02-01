@@ -31,3 +31,11 @@ O sistema permite múltiplos pagamentos para uma mesma proposta a fim de viabili
 ### Regra de arredondamento (conceitual)
 Valores financeiros devem ser tratados utilizando representação decimal exata.
 Cálculos financeiros não devem utilizar ponto flutuante, garantindo precisão, previsibilidade e consistência nos valores armazenados e calculados.
+
+### Por que o status financeiro não é armazenado?
+Porque é um estado derivado, calculado dinamicamente a partir dos pagamentos confirmados.
+
+Isso garante:
+- Consistência
+- Auditabilidade
+- Escalabilidade
