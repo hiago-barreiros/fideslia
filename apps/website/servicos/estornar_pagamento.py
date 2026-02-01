@@ -10,25 +10,30 @@ from apps.website.models import Pagamento
 Serviço responsável por estornar pagamentos.
 '''
 
-@staticmethod
-def executar(*, pagamento_id: int) -> Pagamento:
-    '''
-    Estorna um pagamento confirmado.
+class EstornarPagamentosDeServico:
 
-    Parâmetros:
-    - pagamento_id: ID do pagamento
+    def __int__(self, pagamento_id):
+        self.pagamento_id = pagamento_id
 
-    Retorna:
-    - Pagamento atualizado
-    '''
+    def executar(self):
+        '''
+        Estorna um pagamento confirmado.
 
-    pagamento = Pagamento.objects.get(id=pagamento_id)
+        Parâmetros:
+        - pagamento_id: ID do pagamento
 
-    # Regra de negócio
-    if pagamento.status != 'confirmado':
-        raise ValueError('Apenas pagamentos confirmados podem ser estornados.')
-    
-    pagamento.status = 'estornado'
-    pagamento.save()
+        Retorna:
+        - Pagamento atualizado
+        '''
 
-    return pagamento
+        pagamento = Pagamento.objects.get(id=self.pagamento_id)
+
+        # Regra de negócio
+        if pagamento.status != 'confirmado':
+            raise ValueError('Apenas pagamentos confirmados podem ser estornados.')
+        
+        pagamento.status = 'estornado'
+        pagamento.estornar()
+        pagamento.save()
+
+        return pagamento

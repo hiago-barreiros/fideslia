@@ -6,14 +6,18 @@ Interpreta a situação financeira da proposta.
 
 from decimal import Decimal
 from apps.website.models import Proposta, Pagamento
+from django.db.models import Sum
 
 class StatusFinanceiroDeServico:
     '''
     Serviço responsável por calcular o status financeiro de uma proposta.
     '''
 
-    @staticmethod
-    def executar(*, proposta_id: int) -> dict:
+    def __init__(self, proposta_id: int):
+        self.proposta_id = proposta_id
+
+
+    def executar(self):
         '''
         Calcula o status financeiro da proposta
 
@@ -23,7 +27,7 @@ class StatusFinanceiroDeServico:
         - status_financeiro
         '''
 
-        proposta = Proposta.objects.get(id=proposta_id)
+        proposta = Proposta.objects.get(id=self.proposta_id)
 
         pagamentos_confirmados = Pagamento.objects.filter(
             proposta=proposta,
