@@ -70,4 +70,19 @@ Responsável por confirmar um pagamento pendente.
 ### Saída
 - Entidade Pagamento confirmada
 
+## Caso de uso: Estornar pagamento
+
+Responsável por estornar um pagamento confirmado.
+
+### Regras
+- Apenas pagamentos confirmados podem ser estornados
+- Pagamentos estornados não retornam ao estado anterior
+- O estorno afeta o saldo da proposta indiretamente
+
+### Entrada
+- ID do pagamento
+
+### Saída
+- Entidade Pagamento estornada
+
 
