@@ -202,3 +202,12 @@ class HistoricoFinanceiro(models.Model):
 
     def __str__(self):
         return f'{self.proposta} | {self.tipo_evento} | {self.valor}'
+    
+
+class HistoricoFianceiro(models.Model):
+    proposta = models.ForeignKey(Proposta, on_delete=models.PROTECT)
+    pagamento = models.ForeignKey(Pagamento, null=True, blank=True, on_delete=models.PROTECT)
+    tipo_evento = models.CharField(max_length=50)
+    valor = models.DecimalField(max_digits=10, decimal_places=2)
+    descricao = models.TextField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
