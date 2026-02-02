@@ -149,3 +149,56 @@ class Pagamento(models.Model):
 
     def __str__(self):
         return f'Pagamento {self.id} - {self.valor}'
+
+class HistoricoFinanceiro(models.Model):
+    '''
+    Registro imutável de eventos financeiros relacionados a uma proposta.
+    '''
+
+    TIPO_EVENTO_CHOICES = [
+        ('pagamento_registrado', 'Pagamento registrado'),
+        ('pagamento_confirmado', 'Pagamento confirmado'),
+        ('pagamento_estornado', 'Pagamento estornado'),
+        ('ajuste_manual', 'Ajuste manual'),
+    ]
+
+    proposta = models.ForeignKey(
+        'website.Proposta',
+        on_delete=models.PROTECT,
+        related_name='historico_financeiro'
+    )
+
+    pagamento = models.ForeignKey(
+        'website.Pagamento',
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name='historicos'
+    )
+
+    tipo_evento = models.CharField(
+        max_length=50,
+        choices=TIPO_EVENTO_CHOICES
+    )
+
+    valor = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    descricao = models.TextField(
+        blank=True
+    )
+
+    criado_em = models.DateTimeField(
+        default=timezone.now,
+        editable=False
+    )
+
+    class Meta:
+        verbose_name = 'Histórico Financeiro'
+        verbose_name_plural = 'Históricos Financeiros'
+        ordering = ['criado_em']
+
+    def __str__(self):
+        return f'{self.proposta} | {self.tipo_evento} | {self.valor}'
