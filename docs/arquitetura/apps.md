@@ -1,0 +1,1 @@
+- App prestador registrado no settings como camada de interface.

@@ -1,4 +1,4 @@
-##Interface do Prestador
+## Interface do Prestador
 
 ### Objetivo
 Expor as funcionalidades do sistema ao prestador de serviço por meio de views,
@@ -25,3 +25,13 @@ sem duplicar regras de negócio.
 - Serviços são responsáveis por regras e validações
 - Histórico financeiro é imutável
 
+### Responsabilidades
+- Dashboard do prestador
+- Visualização de propostas
+- Registro de pagamentos
+- Interação com serviços do domínio (website)
+
+### Não é responsabilidade
+- Regras de negócio
+- Persistência
+- Cálculo financeiro
