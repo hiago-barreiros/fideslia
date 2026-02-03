@@ -1,0 +1,29 @@
+<h1>Dashboard do Prestador</h1>
+
+<h2>Propostas</h2>
+<ul>
+    <li>Total: {{ total_propostas }}</li>
+    <li>Abertas: {{ propostas_por_status.aberta }}</li>
+    <li>Aceitas: {{ propostas_por_status.aceita }}</li>
+    <li>Concluídas: {{ propostas_por_status.concluida }}</li>
+</ul>
+
+<h2>Financeiro</h2>
+<ul>
+    <li>Total recebido: R$ {{ total_recebido }}</li>
+    <li>Total pendente: R$ {{ total_pendente }}</li>
+</ul>
+
+<h2>Últimos Pagamentos</h2>
+<ul>
+    {% for pagamento in ultimos_pagamentos %}
+        <li>
+            Proposta #{{ pagamento.proposta.id }} —
+            R$ {{ pagamento.valor }} —
+            {{ pagamento.status }}
+        </li>
+    {% empty %}
+        <li>Nenhum pagamento registrado.</li>
+    {% endfor %}
+</ul>
+

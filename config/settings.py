@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.website',
-    'apps.prestador',
+    'apps.prestador.apps.PrestadorConfig',
 ]
 
 MIDDLEWARE = [
