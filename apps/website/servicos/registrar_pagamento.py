@@ -5,6 +5,7 @@ Cria um pagamento vinculado a um proposta aceita.
 '''
 
 from apps.website.models import Proposta, Pagamento
+from apps.website.servicos.registrar_evento_financeiro import RegistrarEventoFinanceiroDeServico
 
 class RegistrarPagamentoDeServico:
     '''
@@ -36,5 +37,15 @@ class RegistrarPagamentoDeServico:
             valor=valor,
             status='pendente'
         )
+
+        # 🔹 Histórico financeiro
+        RegistrarEventoFinanceiroDeServico(
+            proposta=pagamento.proposta,
+            pagamento=pagamento,
+            tipo_evento='pagamento_registrado',
+            valor=valor,
+            descricao='Pagamento registrado'
+        ).executar()
+
 
         return pagamento

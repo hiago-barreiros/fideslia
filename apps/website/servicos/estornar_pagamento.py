@@ -8,6 +8,7 @@ from django.core.exceptions import ValidationError
 
 from apps.website.models import Pagamento
 from apps.website.servicos.status_financeiro import StatusFinanceiroDeServico
+from apps.website.servicos.registrar_evento_financeiro import RegistrarEventoFinanceiroDeServico
 
 '''
 Serviço responsável por estornar pagamentos.
@@ -53,5 +54,13 @@ class EstornarPagamentosDeServico:
         if status_financeiro['status_financeiro'] != 'quitada':
             proposta.status = 'aceita'
             proposta.save()
+
+        RegistrarEventoFinanceiroDeServico(
+            proposta=pagamento.proposta,
+            pagamento=pagamento,
+            tipo_evento='pagamento_estornado',
+            valor=-pagamento.valor,
+            descricao='Pagamento estornado'
+        ).executar()
 
         return pagamento
