@@ -2,11 +2,27 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.exceptions import ValidationError
+from django.db.models import Sum
 
 class Cliente(models.Model):
 
+    SEXO_CHOICES = [
+        ('M', 'Masculino'),
+        ('F', 'Feminino'),
+        ('O', 'Outro')
+    ]
+
     nome = models.CharField(max_length=50)
     contato = models.CharField(max_length=11)
+
+
+    sexo = models.CharField(
+        max_length=1,
+        choices=SEXO_CHOICES,
+        blank=True,
+        null=True
+    )
+
     observacoes = models.TextField(blank=True)
 
     criando_em = models.DateTimeField(auto_now_add=True)
@@ -59,7 +75,7 @@ class Proposta(models.Model):
     def total_pago(self):
         return (
             self.pagamentos.filter(status=Pagamento.STATUS_CONFIRMADO)
-            .aggregate(total=sum('valor'))
+            .aggregate(total=Sum('valor'))
             .get('total') or 0
         )
     
@@ -144,7 +160,7 @@ class Pagamento(models.Model):
         if self.status != self.STATUS_PENDENTE:
             raise ValidationError('Apenas pagamentos pendentes podem ser cancelados.')
         
-        self.status = self.STATUS_ESTORNADO
+        self.status = self.STATUS_CANCELADO
         self.save()
 
     def __str__(self):
